@@ -1,5 +1,6 @@
 "use client";
 
+import { logEvent } from "@/lib/analytics";
 import { File, Folder } from "lucide-react";
 import Link from "next/link";
 
@@ -21,6 +22,7 @@ function renderLink(slug: string, activeSlug: string) {
         isActive ? "text-black" : "text-neutral-500"
       } ${isNested ? "ml-4" : ""}`}
       key={path}
+      onClick={() => logEvent("link", { type: label })}
     >
       <Icon className="size-3" strokeWidth={3} />
       {label}
