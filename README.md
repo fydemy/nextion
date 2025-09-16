@@ -32,6 +32,7 @@ CMS/
    NOTION_TOKEN=ntn_XXX
    WORKSPACE_ID= // the parent id can be found in the url *in the square bracket (https://www.notion.so/fydemy/CMS-[2684e315713a80ae8eb0c39934603184])
    ROOT_FALLBACK= // the name of notion page for the / or root route
+   NEXT_PUBLIC_GA_MEASUREMENT_ID= // can be found at analytics.google.com
    ```
 
 5. Get started by adding a _Page and Subpages_ on the `Assosiated workspace` that you have chosen earlier. (\*with lowercase and **URL/slug** rule)
@@ -56,21 +57,13 @@ CMS/
    title: "Home"
    description: "We are a community-driven initiative focused on open-source software engineering and e-learning."
    ```
-3. Responsive in any devices
-4. Provided plain-styled design with `TailwindCSS` and `Lucide-react` which make it easy to modify and improve based on your needs.
+3. Google analytics integrated with custom event!
+4. Responsive in any devices
+5. Provided plain-styled design with `TailwindCSS` and `Lucide-react` which make it easy to modify and improve based on your needs.
 
 ## ✅ Upcoming features
 
-- [x] Synchronize Next and Notion directory structure routing
-
-- [x] Metadata fetching and setup per page
-
-- [x] Blog feature
-
-- [x] Caching and ISR
-
-- [x] Provide stying templates (1)
-
+- [x] Provide more stying templates (1)
 - [ ] Bash scripting for configuration and setup
 
 ## ❌ Issues
