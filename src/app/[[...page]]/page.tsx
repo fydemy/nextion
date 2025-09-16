@@ -1,21 +1,16 @@
+import { getData } from "@/lib/map";
 import yaml from "js-yaml";
-import { map } from "@/lib/map";
 
-import { n2m } from "@/lib/notion";
 import { marked } from "marked";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-export const revalidate = Number(process.env.REVALIDATE) || 60;
-let cachedData: Record<string, string> | null = null;
+export const revalidate = 60;
 
-export async function getData() {
-  if (!cachedData) {
-    const blocks = await n2m.pageToMarkdown(process.env.WORKSPACE_ID!);
-    cachedData = map(blocks);
-  }
-  return cachedData;
-}
+type PageProps = {
+  params: Promise<{ page?: string[] }>;
+};
+
 async function getPage(slug: string) {
   const data = await getData();
   let content = data[slug];
@@ -34,13 +29,10 @@ async function getPage(slug: string) {
 
 export async function generateMetadata({
   params,
-}: {
-  params: { page?: string[] };
-}): Promise<Metadata> {
+}: PageProps): Promise<Metadata> {
   const { page } = await params;
 
   const slug = page?.join("/") || process.env.ROOT_FALLBACK!;
-  const data = await getData();
 
   const { config, content } = await getPage(slug);
 
@@ -50,11 +42,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function Home({
-  params,
-}: {
-  params: { page?: string[] };
-}) {
+export default async function Home({ params }: PageProps) {
   const { page } = await params;
 
   const slug = page?.join("/") || process.env.ROOT_FALLBACK!;

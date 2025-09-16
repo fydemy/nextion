@@ -33,7 +33,7 @@ const Sidebar = ({
   data,
   className,
 }: {
-  page: string[];
+  page?: string[];
   data: Record<string, string>;
   className: string;
 }) => {

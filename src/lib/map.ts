@@ -1,7 +1,8 @@
 import { MdBlock } from "notion-to-md/build/types";
+import { n2m } from "./notion";
 
-export function map(nodes: MdBlock[], parentSlug = ""): Record<string, string> {
-  let pages: Record<string, string> = {};
+function map(nodes: MdBlock[], parentSlug = ""): Record<string, string> {
+  const pages: Record<string, string> = {};
 
   for (const node of nodes) {
     if (node.type === "child_page") {
@@ -21,4 +22,14 @@ export function map(nodes: MdBlock[], parentSlug = ""): Record<string, string> {
   }
 
   return pages;
+}
+
+let cachedData: Record<string, string> | null = null;
+
+export async function getData() {
+  if (!cachedData) {
+    const blocks = await n2m.pageToMarkdown(process.env.WORKSPACE_ID!);
+    cachedData = map(blocks);
+  }
+  return cachedData;
 }

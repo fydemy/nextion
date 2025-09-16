@@ -8,7 +8,7 @@ const Toggle = ({
   page,
   data,
 }: {
-  page: string[];
+  page?: string[];
   data: Record<string, string>;
 }) => {
   const [open, setOpen] = useState(false);
