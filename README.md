@@ -30,6 +30,8 @@ CMS/
 
    ```
    NOTION_TOKEN=ntn_XXX
+   WORKSPACE_ID= // the parent id can be found in the url *in the square bracket (https://www.notion.so/fydemy/CMS-[2684e315713a80ae8eb0c39934603184])
+   ROOT_FALLBACK= // the name of notion page for the / or root route
    ```
 
 5. Get started by adding a _Page and Subpages_ on the `Assosiated workspace` that you have chosen earlier. (\*with lowercase and **URL/slug** rule)

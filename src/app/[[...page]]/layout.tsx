@@ -4,6 +4,7 @@ import { Github } from "lucide-react";
 import Sidebar from "../components/sidebar";
 import Toggle from "../components/toggle";
 import Image from "next/image";
+import { logEvent } from "@/lib/analytics";
 
 export const revalidate = 60;
 
@@ -31,8 +32,9 @@ export default async function Layout({ children, params }: LayoutProps) {
           </Link>
           <div className="flex gap-x-4">
             <Link
-              href="https://fydemy.com"
+              href="https://github.com/fydemy"
               className="flex justify-center items-center bg-black text-white size-6"
+              onClick={() => logEvent("link", { type: "github" })}
             >
               <Github className="size-4 fill-white" />
             </Link>
