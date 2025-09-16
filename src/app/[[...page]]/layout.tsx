@@ -1,18 +1,18 @@
 import Link from "next/link";
-import { getData } from "./page";
-import { Github, SidebarIcon } from "lucide-react";
+import { getData } from "../../lib/map";
+import { Github } from "lucide-react";
 import Sidebar from "../components/sidebar";
 import Toggle from "../components/toggle";
+import Image from "next/image";
 
-export const revalidate = Number(process.env.REVALIDATE) || 60;
+export const revalidate = 60;
 
-export default async function Layout({
-  children,
-  params,
-}: {
+type LayoutProps = {
   children: React.ReactNode;
-  params: { page: string[] };
-}) {
+  params: Promise<{ page?: string[] }>;
+};
+
+export default async function Layout({ children, params }: LayoutProps) {
   const data = await getData();
   const { page } = await params;
 
@@ -21,7 +21,13 @@ export default async function Layout({
       <header className="w-full fixed h-24 flex items-center backdrop-blur-sm">
         <nav className="flex justify-between items-center w-full max-w-4xl mx-auto px-6">
           <Link href="/">
-            <img src="/logo.svg" className="w-28" />
+            <Image
+              width={100}
+              height={100}
+              alt="logo"
+              src="/logo.svg"
+              className="w-28"
+            />
           </Link>
           <div className="flex gap-x-4">
             <Link
